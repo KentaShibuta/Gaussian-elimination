@@ -53,9 +53,9 @@ void gauss(double **a)
 	/*解の計算*/
     
 	for (i = nnode - 1; i >= 0; i--) {
-        x[i] = a[i][nnode];
-        for (j = nnode - 1; j > i; j--) {
-            x[i] -= a[i][j] * x[j];
-        }
+		x[i] = a[i][nnode];
+		for (j = nnode - 1; j > i; j--) {
+			x[i] -= a[i][j] * x[j];
+		}
 	}	
 }
