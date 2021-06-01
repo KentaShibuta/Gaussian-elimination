@@ -42,5 +42,8 @@ int main(void)
         printf("x%d=%f\n", i, x[i]);
     }
 
+    delete_double1d(x);
+    delete_double2d(A_b);
+
 	return 0;
 }
