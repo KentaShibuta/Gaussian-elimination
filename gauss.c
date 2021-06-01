@@ -1,12 +1,16 @@
 // 2020.04.22 Kenta Shibuta
 // 解ベクトル x[nnode]はグローバル変数の定義に合わせて適宜変更すること
 #include <math.h>
+#include <stdlib.h>
 #include "global_variable.h"
+#include "malloc.h"
+
 void gauss(double **a)
 {
 	int i, j, k, l, pivot;
-	//double x[nnode];
-	double p, q, m, b[1][nnode + 1];
+	double p, q, m;
+	double *b;
+	b = (double *)malloc(sizeof(double) * (nnode+1)); 
 
 	for (i = 0; i<nnode; i++) { // ピポットの選択
 		m = 0;
@@ -23,9 +27,9 @@ void gauss(double **a)
 		/*pivotがiと違えば、行の入れ替え*/
 		if (pivot != i) {
 			for (j = 0; j<nnode + 1; j++) {
-				b[0][j] = a[i][j];
+				b[j] = a[i][j];
 				a[i][j] = a[pivot][j];
-				a[pivot][j] = b[0][j];
+				a[pivot][j] = b[j];
 			}
 		}
 	}
@@ -58,4 +62,6 @@ void gauss(double **a)
 			x[i] -= a[i][j] * x[j];
 		}
 	}	
+
+	delete_double1d(b);
 }
